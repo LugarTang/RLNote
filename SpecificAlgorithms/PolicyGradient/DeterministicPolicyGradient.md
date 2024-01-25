@@ -9,25 +9,28 @@ Now we are discussing it under the frame of Policy Gradient Algorithms. So we ju
 >The deterministic policy gradient is the expected gradient of the action-value function. This simple form means that the deterministic policy gradient can be estimated much more efficiently than the usual stochastic policy gradient. 
 
 In usual stochastic case, we select action by
+
 $$
 \pi_\theta(a|s)=\mathcal P[a|s;\theta].
 $$
 
 But now we use a deterministic solution:
+
 $$
 a=\mu_\theta(s).
 $$
 
 > In the stochastic case, the policy gradient integrates over both state and action spaces, whereas in the deterministic case it only integrates over the state space. As a result, computing the stochastic policy gradient may require more samples, especially if the action space has many dimensions.
 
-![image-20231122175425709](C:\Users\11620\AppData\Roaming\Typora\typora-user-images\image-20231122175425709.png)
 
 
 
 This algorithms uses average reward return:
+
 $$
 J(\mu_\theta):=\int_{\mathcal S}\rho^\mu r(s,\mu_\theta(s))\text d s,
 $$
+
 where $\rho^\mu$ is the discounted state distribution concerning policy $\mu$.
 
 
@@ -39,6 +42,7 @@ where $\rho^\mu$ is the discounted state distribution concerning policy $\mu$.
 $$
 \lim_{\sigma\to0}\nabla_\theta J(\pi_{\mu_\theta,\sigma})=\nabla_\theta J(\mu_\theta).
 $$
+
 This equation shows that they bear innate similarity so many algorithms can be migrated here.
 
 
@@ -50,18 +54,16 @@ This equation shows that they bear innate similarity so many algorithms can be m
 **Content**
 
 *Conclusion*
+
 $$
-\nabla_\theta J(\mu_\theta)=E_{s\sim\rho^\mu}[\nabla_\theta\mu_\theta(s)\nabla_a Q^\mu(s,a)\big|_{a=\mu_\theta(s)}].
+\nabla_\theta J(\mu_\theta)=E_{s\sim\rho^\mu}[\nabla_\theta\mu_\theta(s)\nabla_a Q^\mu(s,a)\big|{a=\mu_\theta(s)}].
 $$
+
 
 ---
 **Proof**
 
 Note that you can not apply derivative rules to uncertain functions, like $Q^{\mu_\theta}(s,\mu_\theta(s))$.
-
-![image-20231121233123461](C:\Users\11620\AppData\Roaming\Typora\typora-user-images\image-20231121233123461.png)
-
-![image-20231121233150309](C:\Users\11620\AppData\Roaming\Typora\typora-user-images\image-20231121233150309.png)
 
 
 
@@ -83,10 +85,10 @@ target network and soft update
 
 
 We constructed an exploration policy $\mu'$ by adding noise sampled from a noise process $\mathcal N$ to our actor policy
+
 $$
 \mu'(s_t)=\mu(s_t|\theta_t^\mu)+\mathcal N.
 $$
-![image-20231122165601102](C:\Users\11620\AppData\Roaming\Typora\typora-user-images\image-20231122165601102.png)
 
 
 

@@ -20,9 +20,11 @@ The essence of RL is that the **agent** learns a **policy** to interact with the
 6. Environment: This concept includes a reward function $\mathcal R:s\times a\to r$ and a transition function $\mathcal P:s\times a\to s$. **Model** is something you use to approximate an unknown environment.
 
 Formally, an RL problem can be characterised by a Markov decision process (MDP).
+
 $$
 \mathcal M:=\langle\mathcal S,\mathcal A,\mathcal P,\mathcal R,\gamma\rangle,
 $$
+
 where $\gamma$ is a discount factor.
 
 ## Value Function

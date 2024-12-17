@@ -11,7 +11,6 @@
 ---
 
 **Formulae**
-
 $$
 Q(s,a) += \alpha(R+\gamma\max_{a'}(Q(s',a'))-Q(s,a)).\tag{1}
 $$
@@ -39,17 +38,17 @@ A --> B --> C
 This is an optimisation designed to tackle the overestimation issue inherent in Q-learning.
 
 The formula below represents the ground truth that we aim to approximate:
+
 $$
-V(s):=\max_{s->s'}V(s').\\
+V(s):=\max_{s->s'}V(s').
 $$
+
 However, during our approximation process, $V_t(s)$ is a random variable with $E[V_t(s)]=V(s)$.
 
 Therefore, Q-learning tends to produce higher estimates because $E(\max(a,b))>\max(E(a),E(b))$.
 
 # Replay Buffer
 
-![image-20231108104806049](C:\Users\11620\AppData\Roaming\Typora\typora-user-images\image-20231108104806049.png)
+Reuse training tuples during training, which destroys the order of sampling; thus reduces the correlation between samples.
 
-that destroys the order of sampling, thus reduces the correlation between samples.
-
-And we can do K times of sample and update then go back to getting data. K=1 is common but larger K is more efficient.
+And we can do $K$ times of sample and update then go back to getting data. $K=1$ is common but larger $K$ is more efficient.

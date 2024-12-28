@@ -6,7 +6,7 @@ Published in 2014 ICML. If not specified otherwise, all quote is from this origi
 
 Now we are discussing it under the frame of Policy Gradient Algorithms. So we just focus on what's different from **stochastic** policy gradient algorithms.
 
-> The deterministic policy gradient is the expected gradient of the action-value function. This simple form means that the deterministic policy gradient can be estimated much more efficiently than the usual stochastic policy gradient.
+> The deterministic policy gradient is the expected gradient of the action-value function. This simple form means that the deterministic policy gradient can be estimated much **more efficiently** than the usual stochastic policy gradient.
 
 In usual stochastic case, we select action by
 
@@ -89,6 +89,14 @@ The critic's role is to estimate the Q-value accurately. The critic loss functio
 $\tau\ll1$, Typically $\tau=0.001$.
 
 batch-normalisation
+
+# Twin Delayed DDPG (TD3)
+
+While DDPG can achieve great performance sometimes, it is frequently brittle with respect to hyperparameters and other kinds of tuning. A common failure mode for DDPG is that the learned Q-function begins to dramatically overestimate Q-values, which then leads to the policy breaking, because it exploits the errors in the Q-function. Twin Delayed DDPG (TD3) is an algorithm that addresses this issue by introducing three critical tricks.
+
+1. Double Q-learning as introduced in Q-learning part.
+2. **“Delayed” Policy Updates.** TD3 updates the policy (and target networks) less frequently than the Q-function. The paper recommends one policy update for every two Q-function updates. (Why?)
+3. **Target Policy Smoothing.** TD3 adds noise to the target action, to make it harder for the policy to exploit Q-function errors by smoothing out Q along changes in action.
 
 ---
 
